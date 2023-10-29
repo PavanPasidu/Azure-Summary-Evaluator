@@ -272,7 +272,8 @@ def predict_wording(prompt_q,prompt_title,prompt_text,summary_in,content_score):
     
     
 
-    model = load_model('wNN_3.h5')
+    with open('w1.pickle', 'rb') as f:
+        model = pickle.load(f)
 
     # Preprocessing
     # --------------------------------------------------
