@@ -67,7 +67,7 @@ from tensorflow.keras.models import load_model
 
 def predict_content(prompt_q,prompt_title,prompt_text,summary_in):
     #open the model
-    with open('v2.pickle', 'rb') as f:
+    with open('/mount/src/azure-summary-evaluator/v2.pickle', 'rb') as f:
         model = pickle.load(f)
 
     # Regular expression pattern to find numbers in the text
@@ -272,10 +272,10 @@ def predict_wording(prompt_q,prompt_title,prompt_text,summary_in,content_score):
     
     
 
-    with open('w1.pickle', 'rb') as f:
+    with open('/mount/src/azure-summary-evaluator/w1.pickle', 'rb') as f:
         model = pickle.load(f)
 
-    # Preprocessing
+    # Preprocessing 
     # --------------------------------------------------
     # Regular expression pattern to find numbers in the text
     pattern = r'\d+(\.\d+)?'
