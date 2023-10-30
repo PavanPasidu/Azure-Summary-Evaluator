@@ -62,7 +62,7 @@ import textstat
 #     return predicted_score
 
 def predict_content(prompt_q,prompt_title,prompt_text,summary_in):
-    #open the model
+    #open the model /mount/src/azure-summary-evaluator/
     with open('/mount/src/azure-summary-evaluator/v2.pickle', 'rb') as f:
         model = pickle.load(f)
 
@@ -112,8 +112,16 @@ def predict_content(prompt_q,prompt_title,prompt_text,summary_in):
     def generate_summary(input):
         # Load pre-trained model and tokenizer
         model_name = "sshleifer/distilbart-cnn-12-6"
-        tokenizer = AutoTokenizer.from_pretrained("sshleifer/distilbart-cnn-12-6")
-        model = AutoModelForSeq2SeqLM.from_pretrained("sshleifer/distilbart-cnn-12-6")
+        @st.cache_resource
+        def load_pretrained_model():
+            model = AutoModelForSeq2SeqLM.from_pretrained("sshleifer/distilbart-cnn-12-6")
+            return model
+        @st.cache_resource
+        def load_tokanizer():
+            tokenizer = AutoTokenizer.from_pretrained("sshleifer/distilbart-cnn-12-6")
+            return tokenizer
+        model = load_pretrained_model()
+        tokenizer = load_tokanizer()
 
         generated_summaries = []
 
@@ -267,7 +275,7 @@ def predict_wording(prompt_q,prompt_title,prompt_text,summary_in,content_score):
     #     model = pickle.load(f)
     
     
-
+    # /mount/src/azure-summary-evaluator/
     with open('/mount/src/azure-summary-evaluator/w1.pickle', 'rb') as f:
         model = pickle.load(f)
 
