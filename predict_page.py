@@ -18,6 +18,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import pickle
 import sentencepiece
+import xgboost as xgb
 
 import nltk
 import textstat
@@ -371,7 +372,8 @@ def predict_wording(prompt_q,prompt_title,prompt_text,summary_in,content_score):
         return final_dataset
 
     def get_content_score(input):
-        content = model.predict(input)
+        new_dmatrix = xgb.DMatrix(input)
+        content = model.predict(new_dmatrix)
         return content[0]
 
     prompt_question = prompt_q
