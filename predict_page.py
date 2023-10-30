@@ -21,11 +21,6 @@ import sentencepiece
 
 import nltk
 import textstat
-from tensorflow import keras
-from tensorflow.keras import layers
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.models import load_model
-
 # from transformers import GPT2Tokenizer, GPT2LMHeadModel
 
 
