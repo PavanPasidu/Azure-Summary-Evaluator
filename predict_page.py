@@ -374,7 +374,7 @@ def predict_wording(prompt_q,prompt_title,prompt_text,summary_in,content_score):
     def get_content_score(input):
         new_dmatrix = xgb.DMatrix(input)
         content = model.predict(new_dmatrix)
-        return content[0]
+        return content
 
     prompt_question = prompt_q
     prompt_title = prompt_title
@@ -390,7 +390,7 @@ def predict_wording(prompt_q,prompt_title,prompt_text,summary_in,content_score):
     preprocessed_input = preprocessing(input)
     feature_vals = calculate_features(preprocessed_input,content)
     wording = get_content_score(feature_vals.drop(columns=['prompt_question','prompt_title','prompt_text','summary']))
-    return wording
+    return float(wording[0])
 
 
 #-----------------------------------------------------------------------------------------------------------------------------------
